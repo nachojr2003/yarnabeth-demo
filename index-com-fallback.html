@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Yarnabeth — Insumos para la confección</title>
+<meta name="description" content="Venta de insumos para la confección. Lo que la industria, el confeccionista, el distribuidor, el emprendedor y la mercería necesitan.">
+<style>
+/* ---------- tipografías ---------- */
+@font-face{font-family:"Source Sans Pro";font-style:normal;font-weight:400;font-display:swap;src:url("./assets/sourcesanspro-400.woff2") format("woff2")}
+@font-face{font-family:"Source Sans Pro";font-style:normal;font-weight:600;font-display:swap;src:url("./assets/sourcesanspro-600.woff2") format("woff2")}
+@font-face{font-family:"Source Sans Pro";font-style:normal;font-weight:700;font-display:swap;src:url("./assets/sourcesanspro-700.woff2") format("woff2")}
+@font-face{font-family:"product sans";font-style:normal;font-weight:400;font-display:swap;src:url("./assets/product-sans.ttf") format("truetype")}
+@font-face{font-family:"FontAwesome";font-style:normal;font-weight:400;font-display:block;src:url("./assets/fontawesome-webfont.woff2") format("woff2")}
+
+:root{
+  --sans:"Source Sans Pro","Segoe UI",Roboto,-apple-system,Helvetica,Arial,sans-serif,"Segoe UI Emoji","Apple Color Emoji","Noto Color Emoji";
+  --ps:"product sans","Source Sans Pro","Segoe UI",Roboto,Arial,sans-serif;
+  --navy:#002e6d; --navy2:#3447a6; --navy3:#000d21;
+  --azul:#003abf; --texto:#1b3661; --gold:#c90; --crema:#fffaea;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:#fff;color:#212529;font-family:var(--sans);font-size:14px;line-height:1.5;-webkit-text-size-adjust:100%}
+img{max-width:100%;height:auto;display:block;vertical-align:middle}
+a{text-decoration:none;color:inherit}
+.fa{font-family:"FontAwesome";font-style:normal;font-weight:400;line-height:1;display:inline-block}
+
+/* ---------- header ---------- */
+.hdr{
+  height:48px;border-bottom:5px solid var(--gold);
+  background:linear-gradient(90deg,var(--navy) 0%,var(--navy2) 50%,var(--navy3) 100%);
+  display:flex;align-items:center;padding-left:25px;position:relative;z-index:30;
+}
+.brand{flex:0 0 auto}
+.brand img{width:120px;height:auto}
+.search{display:flex;margin-left:11px;width:550px;height:32px;border-radius:4px;overflow:hidden;flex:0 0 auto}
+.search input{
+  flex:1 1 auto;min-width:0;border:0;outline:0;background:#fff;height:32px;
+  padding:0 10px 0 22px;font-family:var(--ps);font-size:20px;color:#495057;
+}
+.search input::placeholder{color:#757575;opacity:1}
+.search button{
+  flex:0 0 66px;border:0;background:#aaa;color:#fff;cursor:pointer;height:32px;
+  display:flex;align-items:center;justify-content:center;font-family:"FontAwesome";font-size:15px;
+}
+.menu{display:flex;align-items:center;margin-left:39px;list-style:none;padding:0;margin-top:0;margin-bottom:0}
+.menu a{display:block;padding:0 18px;font-size:14px;line-height:18px;color:#fff;white-space:nowrap}
+.menu a.caret::after{
+  content:"";display:inline-block;width:0;height:0;margin-left:5px;vertical-align:2px;
+  border-top:4px solid;border-right:4px solid transparent;border-left:4px solid transparent;
+}
+.toggler{display:none;margin-left:auto;background:none;border:1px solid rgba(255,255,255,.55);border-radius:4px;padding:6px 10px;cursor:pointer}
+.toggler span{display:block;width:22px;height:2px;background:#fff;margin:4px 0}
+
+/* ---------- hero ---------- */
+.hero{position:relative;background:var(--crema);overflow:hidden}
+.hero-bg{position:absolute;top:0;left:0;width:100%;height:468px;z-index:0;overflow:hidden}
+.hero-bg img{width:100%;height:468px;object-fit:fill}
+.hero-bg .fade{position:absolute;left:0;right:0;bottom:0;height:200px;background:linear-gradient(transparent,#ddd)}
+
+.promo{
+  position:relative;z-index:2;padding:3px 0 9px;text-align:center;color:#fff;
+  background:linear-gradient(45deg,red 0%,#005f05 100%);opacity:.8;
+}
+.promo h3{
+  margin:0;font-family:var(--sans);font-weight:700;font-size:35px;line-height:42px;
+  letter-spacing:-.85px;white-space:nowrap;color:#fff;
+}
+.promo h3 img{display:inline-block;width:56px;height:56px;vertical-align:middle;margin-right:8px}
+.promo h3 .fa{font-size:35px;margin-left:16px;vertical-align:baseline}
+
+.wrap98{width:98%;margin:0 auto}
+.banner{position:relative;z-index:2}
+.banner img{width:100%;height:auto}
+
+.titulo{
+  position:relative;z-index:2;margin:0 0 8px;padding:0 15px;
+  font-family:var(--sans);font-weight:700;font-size:35px;line-height:44px;color:var(--azul);
+}
+.cards{position:relative;z-index:2;display:flex;gap:30px;align-items:stretch;padding-bottom:26px}
+.card{
+  flex:1 1 0;min-width:0;background:#fff;border:1px solid #dee2e6;
+  box-shadow:grey 2px 6px 7px -3px;display:flex;flex-direction:column;justify-content:space-between;
+}
+.fila{display:flex;flex-wrap:wrap;align-items:center;justify-content:center}
+.fila1{padding:16px 0}
+.fila2{padding-bottom:16px}
+.col4{width:33.3333%;text-align:center}
+.it{display:inline-block;width:120px;text-align:left;color:var(--texto)}
+.it img{width:118px;height:auto;border:1px solid #ccc}
+.it span{display:block;font-family:var(--ps);font-size:20px;line-height:24px;color:var(--texto)}
+.cat{
+  width:100%;text-align:center;margin:20px 0 16px;
+  font-family:var(--sans);font-weight:700;font-size:13.2px;line-height:18px;color:var(--azul);
+}
+
+/* ---------- secciones bajo el fold ---------- */
+.sec{background:var(--crema);padding:6px 0 38px}
+.sec h2{
+  margin:0 0 18px;padding:0 15px;font-family:var(--sans);font-weight:700;font-size:35px;
+  line-height:44px;color:var(--azul);
+}
+.grid4{display:flex;gap:30px;align-items:stretch}
+.tile{
+  flex:1 1 0;min-width:0;background:#fff;border:1px solid #dee2e6;box-shadow:grey 2px 6px 7px -3px;
+  padding:18px 16px 20px;display:flex;flex-direction:column;
+}
+.tile .ph{height:168px;display:flex;align-items:center;justify-content:center;margin-bottom:12px}
+.tile .ph img{max-height:168px;width:auto;border:1px solid #ccc}
+.tile b{display:block;font-family:var(--ps);font-weight:400;font-size:20px;line-height:24px;color:var(--texto)}
+.tile em{display:block;font-style:normal;font-size:14px;color:#6c757d;margin-top:6px}
+
+.notas{background:#fff;padding:34px 0 40px}
+.notas h2{margin:0 0 18px;padding:0 15px;font-family:var(--sans);font-weight:700;font-size:35px;line-height:44px;color:var(--texto)}
+.notas .grid4{gap:30px}
+.nota{
+  flex:1 1 0;min-width:0;background:#fff;border:1px solid #dee2e6;border-top:4px solid #8fc21f;
+  box-shadow:grey 2px 6px 7px -3px;padding:18px 18px 22px;display:flex;flex-direction:column;
+}
+.nota h3{margin:0 0 10px;font-size:19px;line-height:25px;font-weight:600;color:var(--texto)}
+.nota time{font-size:13px;color:#6c757d;margin-top:auto}
+.nota span{display:block;font-size:13px;color:var(--azul);font-weight:700;margin-top:4px}
+
+/* ---------- footer ---------- */
+footer{background:linear-gradient(90deg,var(--navy) 0%,var(--navy2) 55%,var(--navy3) 100%);color:#fff;padding:38px 0 0}
+.fcols{display:flex;gap:40px;flex-wrap:wrap}
+.fcol{flex:1 1 240px;min-width:0}
+.fcol h4{margin:0 0 14px;font-size:15px;letter-spacing:.06em;font-weight:700;color:#fff;text-transform:uppercase}
+.fcol p,.fcol li{font-size:14px;line-height:1.7;color:#dfe5f1;margin:0 0 8px}
+.fcol ul{list-style:none;padding:0;margin:0}
+.fcol .lab{color:#fff;font-weight:700}
+.fcol a:hover{text-decoration:underline}
+.legal{margin-top:30px;border-top:1px solid rgba(255,255,255,.18);padding:14px 0 18px;font-size:13px;color:#c9d4e8;text-align:center}
+
+/* ---------- responsive ---------- */
+@media (max-width:1199px){
+  .menu a{padding:0 12px}
+  .search{width:38vw}
+}
+@media (max-width:991px){
+  .hdr{flex-wrap:wrap;height:auto;padding:12px 14px 10px}
+  .brand img{width:120px}
+  .search{margin-left:auto;width:195px;height:30px;order:2}
+  .search input{font-size:17px;padding-left:14px;height:30px}
+  .search button{flex-basis:52px;height:30px}
+  .toggler{display:block;order:3;width:100%;margin:10px 0 0 auto;max-width:56px}
+  .menu{display:none}
+  .hero-bg,.hero-bg img{height:300px}
+  .promo h3{font-size:19px;line-height:26px;letter-spacing:0;white-space:normal;padding:0 10px}
+  .promo h3 img{width:34px;height:34px;margin-right:6px}
+  .promo h3 .fa{font-size:19px;margin-left:10px}
+  .titulo,.sec h2,.notas h2{font-size:26px;line-height:34px;padding:0 4px}
+  .cards,.grid4{flex-direction:column;gap:22px}
+  .card{max-width:520px;margin:0 auto;width:100%}
+  .tile .ph{height:200px}
+  .tile .ph img{max-height:200px}
+}
+@media (max-width:575px){
+  .brand img{width:104px}
+  .search{width:150px}
+  .search input{font-size:15px;padding-left:10px}
+  .it{width:100%;max-width:120px}
+  .it img{width:100%}
+  .it span{font-size:16px;line-height:20px}
+  .col4{padding:0 4px}
+  .titulo,.sec h2,.notas h2{font-size:23px;line-height:30px}
+}
+</style>
+</head>
+<body>
+
+<header class="hdr">
+  <a class="brand" href="#"><img src="./assets/logo-yarnabeth.png" alt="Yarnabeth"></a>
+  <div class="search">
+    <input type="text" placeholder="Buscar..." aria-label="Buscar" readonly>
+    <button type="button" aria-label="Buscar">&#xf002;</button>
+  </div>
+  <button class="toggler" type="button" aria-label="Menú"><span></span><span></span><span></span></button>
+  <nav><ul class="menu">
+    <li><a href="#">Inicio</a></li>
+    <li><a href="#">Tienda</a></li>
+    <li><a href="#" class="caret">Patrones</a></li>
+    <li><a href="#">Catálogos</a></li>
+    <li><a href="#">Blog</a></li>
+    <li><a href="#">Contáctenos</a></li>
+  </ul></nav>
+</header>
+
+<main>
+<section class="hero">
+  <div class="hero-bg">
+    <img src="./assets/slider-desktop.jpg" alt="">
+    <div class="fade"></div>
+  </div>
+
+  <div class="promo">
+    <h3><img src="./assets/icono-megafono.png" alt="">Descuento para nuevos distribuidores y mercerías<i class="fa">&#xf078;</i></h3>
+  </div>
+
+  <div class="wrap98">
+    <div class="banner"><img src="./assets/banner-desktop.jpg" alt="Todo lo que necesitas para temporada escolar"></div>
+
+    <h3 class="titulo">Productos de temporada</h3>
+
+    <div class="cards">
+      <div class="card">
+        <div class="fila fila1">
+          <div class="col4"><a class="it" href="#"><img src="./assets/prod-1835dovr.jpg" alt="1835DOVR"><span>1835DOVR</span></a></div>
+          <div class="col4"><a class="it" href="#"><img src="./assets/prod-p00200pld1.jpg" alt="P00200PLD-1"><span>P00200PLD-1</span></a></div>
+          <div class="col4"><a class="it" href="#"><img src="./assets/prod-18350dorj.jpg" alt="18350DORJ"><span>18350DORJ</span></a></div>
+        </div>
+        <div class="fila fila2">
+          <div class="col4"><a class="it" href="#"><img src="./assets/prod-508800pld.jpg" alt="508800PLD"><span>508800PLD</span></a></div>
+          <div class="col4"><a class="it" href="#"><img src="./assets/prod-850100dor1.jpg" alt="850100DOR-1"><span>850100DOR-1</span></a></div>
+          <div class="col4"><a class="it" href="#"><img src="./assets/prod-300500pld.jpg" alt="300500PLD"><span>300500PLD</span></a></div>
+          <h3 class="cat">Pasmanería</h3>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="fila fila1">
+          <div class="col4"><a class="it" href="#"><img src="./assets/prod-durafil.jpg" alt="Durafil"><span>Durafil</span></a></div>
+          <div class="col4"><a class="it" href="#"><img src="./assets/prod-pelon.jpg" alt="Pelón"><span>Pelón</span></a></div>
+          <div class="col4"><a class="it" href="#"><img src="./assets/prod-yarnaspum.jpg" alt="Yarnaspum"><span>Yarnaspum</span></a></div>
+        </div>
+        <div class="fila fila2">
+          <div class="col4"><a class="it" href="#"><img src="./assets/prod-blister.jpg" alt="Blister"><span>Blister</span></a></div>
+          <div class="col4"><a class="it" href="#"><img src="./assets/prod-caja.jpg" alt="Caja"><span>Caja</span></a></div>
+          <div class="col4"><a class="it" href="#"><img src="./assets/prod-rematadora.jpg" alt="Rematadora"><span>Rematadora</span></a></div>
+          <h3 class="cat">Productos para bordar</h3>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="fila fila1">
+          <div class="col4"><a class="it" href="#"><img src="./assets/prod-domestico.jpg" alt="Doméstico"><span>Doméstico</span></a></div>
+          <div class="col4"><a class="it" href="#"><img src="./assets/prod-recta.jpg" alt="Recta"><span>Recta</span></a></div>
+          <div class="col4"><a class="it" href="#"><img src="./assets/prod-overlock.jpg" alt="Overlock"><span>Overlock</span></a></div>
+        </div>
+        <div class="fila fila2">
+          <div class="col4"><a class="it" href="#"><img src="./assets/prod-encerado.jpg" alt="Encerado"><span>Encerado</span></a></div>
+          <div class="col4"><a class="it" href="#"><img src="./assets/prod-nylon.jpg" alt="Nylon"><span>Nylon</span></a></div>
+          <div class="col4"><a class="it" href="#"><img src="./assets/prod-elasticos.jpg" alt="Elásticos"><span>Elásticos</span></a></div>
+          <h3 class="cat">Hilos de coser, overlock, bordar y nylon</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap98">
+    <h2>Lo más reciente en máquinas</h2>
+    <div class="grid4">
+      <div class="tile">
+        <div class="ph"><img src="./assets/maq-domestica.jpg" alt="Máquina de coser doméstica Tagrup 987"></div>
+        <b>Máquina doméstica Tagrup 987</b><em>24 puntadas · con tabla de extensión 897</em>
+      </div>
+      <div class="tile">
+        <div class="ph"><img src="./assets/maq-overlock.png" alt="Máquina overlock Tagrup 328"></div>
+        <b>Overlock Tagrup 328</b><em>4 hilos · uso doméstico y taller</em>
+      </div>
+      <div class="tile">
+        <div class="ph"><img src="./assets/maq-industrial.png" alt="Máquina industrial Singer 191D-20"></div>
+        <b>Industrial Singer 191D-20</b><em>Recta de alta velocidad</em>
+      </div>
+      <div class="tile">
+        <div class="ph"><img src="./assets/maq-motor.jpg" alt="Motor Cod. 4111"></div>
+        <b>Motor Cod. 4111</b><em>Repuesto para máquina industrial</em>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="notas">
+  <div class="wrap98">
+    <h2>Notas de interés</h2>
+    <div class="grid4">
+      <article class="nota">
+        <h3>¿Por qué se revienta el hilo en la máquina? Causas más comunes y cómo solucionarlo</h3>
+        <time>15 de septiembre de 2026</time><span>Yarnabeth</span>
+      </article>
+      <article class="nota">
+        <h3>Guía de agujas según el tipo de tela: evita saltos de puntada y telas rotas</h3>
+        <time>9 de septiembre de 2026</time><span>Yarnabeth</span>
+      </article>
+      <article class="nota">
+        <h3>5 errores comunes al calcular los insumos y costos de confección</h3>
+        <time>3 de septiembre de 2026</time><span>Yarnabeth</span>
+      </article>
+      <article class="nota">
+        <h3>¿Cómo identificar una tela de buena calidad antes de comprarla?</h3>
+        <time>26 de agosto de 2026</time><span>Yarnabeth</span>
+      </article>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap98">
+    <div class="fcols">
+      <div class="fcol">
+        <h4>Conócenos</h4>
+        <ul>
+          <li><a href="#">¿Quiénes somos?</a></li>
+          <li><a href="#">Misión</a></li>
+          <li><a href="#">Visión</a></li>
+        </ul>
+      </div>
+      <div class="fcol">
+        <h4>Atención y ventas</h4>
+        <p><span class="lab">Importaciones Yarnabeth Limitada</span></p>
+        <p><span class="lab">WhatsApp:</span> +56 9 4137 7090</p>
+        <p><span class="lab">Dirección:</span> El Roble 823, Recoleta, Santiago.</p>
+        <p><span class="lab">Horario de atención:</span><br>Lunes a jueves: 08:30 a 18:00 · Viernes: 08:30 a 17:30</p>
+      </div>
+      <div class="fcol">
+        <h4>Para ti</h4>
+        <ul>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Patrones</a></li>
+          <li><a href="#">Glosario de términos</a></li>
+          <li><a href="#">Catálogos</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="legal">Copyright © Importaciones Yarnabeth Limitada</div>
+  </div>
+</footer>
+
+</body>
+</html>
